@@ -35,18 +35,18 @@ angular.module('asset-path', [])
   }
 })
 
-.filter('assetPath', function(assetPath) {
+.filter('assetPath', ['assetPath', function(assetPath) {
   return function(filename) {
     return assetPath(filename)
   }
-})
+}])
 
-.directive('assetPath', function(assetPath) {
+.directive('assetPath', ['assetPath', function(assetPath) {
   return {
     restrict: 'A',
     compile: function(el, attrs) {
       el.attr('src', assetPath(attrs['assetPath']))
     }
   }
-})
+}])
 
